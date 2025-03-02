@@ -1,0 +1,31 @@
+base-analysis = "cosmap_ms"
+threads = 9
+
+weights = [ "gal", "oneoverr", "zweight", "zoverr"]
+
+[output_parameters]
+base_output_path = "/home/fassnach/kappa_ext/Analysis/MS_2025_03"
+
+[ms_parameters]
+spacing = 20
+fields_to_sample = [
+	"0_0", "0_1", "0_2", "0_3", "0_4", "0_5", "0_6", "0_7",
+]
+
+[filters]
+limiting_magnitude = 24 
+
+[ms_parameters.redshifts]
+HE1104 = 2.32
+WG0214 = 3.24
+J1537 = 1.72
+J1606 = 1.69
+J1721 = 2.37
+
+[ms_parameters.radius]
+value = [120,45]
+units = "arcsec"
+
+[ms_parameters.inner_radius]
+value = 5
+units = "arcsec"
