@@ -1,0 +1,38 @@
+base-analysis = "cosmap_1104"
+threads = 5
+to_remove = {}
+
+[sampling_parameters]
+region_type = "Rectangle"
+sample_type = "Random"
+n_samples = 50000
+
+[output_parameters]
+base_output_path = "/home/fassnach/kappa_ext/Analysis/1104/"
+
+[dataset_parameters]
+dataset_name = "hsc"
+
+[filters]
+limiting_magnitude = [24,]
+
+[sampling_parameters.region_bounds]
+value = [ 332, -1, 345, 6]
+units = "degree"
+
+[geometry_parameters.radius]
+value = [120,]
+units = "arcsec"
+
+[geometry_parameters.inner_radius]
+value = 5
+units = "arcsec"
+
+[lens_parameters]
+lens_name = '1104'
+source_redshift = 2.32
+data_path = '/home/fassnach/kappa_ext/Data/SuprimeCam/HE1104'
+
+[lens_parameters.lens_coordinate]
+coordinate = [166.6393750, -18.3567222]
+units = "degree"
