@@ -1,0 +1,44 @@
+
+{
+    "Main": {
+        "apply_masks": {
+            "needed-data": ["catalog", "mask"],
+            "needed-parameters": ["lens_parameters"]
+        },
+        "apply_filters": {
+            "dependencies": {
+                "apply_masks": "masked_catalogs"
+            },
+            "needed-parameters": ["filters.filters", "Main.output_parameters.output_paths"]
+        },
+
+
+        "count": {
+            "dependencies": {
+                "apply_filters": "catalogs"
+            },
+            "needed-parameters": ["Main.dataset_parameters.dataset_name", "lens_parameters"],
+            "is-output": true
+        }
+    }, 
+    "Setup": {
+        "get_lens_data": {
+            "needed-parameters": ["lens_parameters"],
+	    "output": true,
+	    "output-name": "lens_parameters.lens_data"
+        },
+        "build_filter_sets": {
+            "needed-parameters": ["geometry_parameters.inner_radius", "geometry_parameters.radius", "filters.limiting_magnitude", "lens_parameters", "Main.dataset_parameters.dataset_name"],
+            "output": true,
+            "output-name": "filters.filters"
+        },
+        "build_output_paths": {
+            "needed-parameters": ["Main.output_parameters.base_output_path"],
+            "output-name": "Main.output_parameters.output_paths",
+            "dependencies": {
+                "build_filter_sets": "filter_sets"
+            }
+        }
+    }
+
+}

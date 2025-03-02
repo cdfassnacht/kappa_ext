@@ -1,0 +1,81 @@
+2025-02-18
+==========
+(first part of notes on paper)
+For integration over weight distribution use ~100-200 bins over the distrib
+For each bin, normalize MS values by # of LOS in MS in that bin
+NB: need to have each LOS match for all N overdensity values, which is another
+ reason for only using 2 or 3 weights
+
+For indiv lenses, we don't need to do hierarchical
+
+------
+
+cosmap code
+===========
+heinlin is just the data management tool and rarely interact with it directly
+ beyond pointing it at the data in the beginning
+cosmap does the number count analysis, but is more general than that - its
+ role is to go to some region of the sky, make a computation, and return a
+ value, and then repeat that many times over a specified region of the sky
+ and number of samples
+cosmap needs to know region, n_samples, dataset, data types, and any
+configuration that you need for your analysis, e.g., m_lim, z_src, etc.
+NB: code has a special portion for dealing with MS so we won't have to worry
+ about differences btwn MS and real survey data
+cosmap will handle all of the bookkeeping, so all you have to do is to give
+ it a series of functions to run on the data
+cosmap will also handle multiprocessor aspect when you give it number of cores
+
+we don't need to edit the config.py file.  It just tells cosmap how to interpret
+ the text file that you pass it for an individual lens system
+the "base_analysis" in the toml file tells you the name of the directory where
+ the functions that tell you how to process the data live
+(NB: "wnc" stands for weighted number counts)
+You will need to use a different directory when running MS since the setup is
+ very different
+
+In transformations.py, you just need to run the Setup once at the beginning
+The Main class contains everything that needs to run for each iteration of the
+ loop
+ Things within Main are split up into multiple functions, although they could
+  be just one big function
+ NB: It is much more efficient to run multiple lenses vs the same survey in
+  one go, rather than running them one at a time
+ The output of the count method is the true output of the process, and it is
+  just a dictionary of key-value pairs
+  You indicate that this is the output method in the transformations.json file
+   by setting is-output to true
+
+NB: The cosmap github repo has a simplified example that shows all of this
+ stuff.
+
+number of threads is n worker threads + 1 supervisor thread
+
+To set up things, you have a "wnc" folder that has all of the code-like
+ things in it (list here) and a separate working directory where you would
+ have your file like the wnc_test.toml file that Patrick sent us
+You link to the "code" part via a cosmap install command
+
+Setting up to run things
+========================
+For each of your survey catlogs, (des, hsc, etc.) you need to run
+(one time only) a heinlein command to create a database in the proper format
+example: heinlein add des catalog des.db
+ second argument must be one of des, hsc, cfht, or ms
+example: heinlein add des mask [dir_name]
+ where [dir_name] is the directory containing the masks
+
+Link to the code directory: cosmap install [path to code directory]
+ -- or -- cosmap install --name [nickname for path] [path to code directory]
+
+To run the code
+ cosmap run [path to toml file]
+
+Minimum needed info in the lens catalog: RA, Dec, magnitude (pref i), (z_phot)
+
+Note for running in hup mode
+-----
+tmux (starts a session)
+to exit the session but keep it running Ctrl-B d
+to see your running sessions tmux ls
+to reenter a running session tmux attach -t [number of session from the ls]

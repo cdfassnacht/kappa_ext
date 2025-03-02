@@ -1,0 +1,61 @@
+base-analysis = "wnc"
+threads = 5
+to_remove = {}
+
+[sampling_parameters]
+region_type = "Rectangle"
+sample_type = "Random"
+n_samples = 50000
+
+[output_parameters]
+base_output_path = "~/Documents/Documents/Current/Professional/Research/Environment/In-Progress/DES/cosmap_test/"
+
+[dataset_parameters]
+dataset_name = "des"
+
+[filters]
+limiting_magnitude = [24,]
+
+[sampling_parameters.region_bounds]
+value = [ 30, -35, 40, -30]
+units = "degree"
+
+[geometry_parameters.radius]
+value = [45, 60, 75, 90, 105, 120]
+units = "arcsec"
+
+[geometry_parameters.inner_radius]
+value = 5
+units = "arcsec"
+
+[lens_parameters.DES0029]
+source_redshift = 2.815
+lens_redshift = 0.863
+
+[lens_parameters.DES0420]
+source_redshift = 2.4
+lens_redshift = 0.358
+
+[lens_parameters.DES0214]
+source_redshift = 3.24
+lens_redshift = 0.45
+
+[lens_parameters.DES0408]
+source_redshift = 2.375
+lens_redshift = 0.597
+
+[lens_parameters.DES0029.lens_coordinate]
+coordinate = [7.419268,-38.240602]
+units = "degree"
+
+[lens_parameters.DES0420.lens_coordinate]
+coordinate = [65.1949,-40.6241]
+units = "degree"
+
+[lens_parameters.DES0214.lens_coordinate]
+coordinate = [33.568125,-21.093072]
+units = "degree"
+
+[lens_parameters.DES0408.lens_coordinate]
+coordinate = [62.0905,-53.8999]
+units = "degree"

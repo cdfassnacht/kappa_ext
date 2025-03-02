@@ -1,0 +1,29 @@
+base-analysis = "ms_wnc"
+threads = 9
+
+weights = [ "gal", "oneoverr", "zweight", "zoverr"]
+
+[output_parameters]
+base_output_path = "/home/prwells/projects/SL2S/hier/ms/output"
+
+[ms_parameters]
+spacing = 20
+fields_to_sample = [
+	"0_0", "0_1", "0_2", "0_3", "0_4", "0_5", "0_6", "0_7",
+]
+
+[filters]
+limiting_magnitude = 24 
+
+[ms_parameters.redshifts]
+SL2SJ0214-0405 = 1.88
+SL2SJ0217-0513 = 1.85
+SL2SJ0219-0829 = 2.15
+
+[ms_parameters.radius]
+value = [120,45]
+units = "arcsec"
+
+[ms_parameters.inner_radius]
+value = 5
+units = "arcsec"

@@ -1,0 +1,17 @@
+{
+    "cfht": {
+        "redshift": "Z_B",
+        "mag_r": "MAG_r",
+        "mag_i": "MAG_i" 
+    },
+    "des" : {
+        "redshift": "DNF_Z",
+        "mag_r": "MAG_AUTO_R",
+        "mag_i": "MAG_AUTO_I"
+    }
+    "hsc" : {
+        "redshift": "demp_photoz_best",
+        "mag_r": "r_kronflux_mag",
+        "mag_i": "i_kronflux_mag"
+    }
+}
